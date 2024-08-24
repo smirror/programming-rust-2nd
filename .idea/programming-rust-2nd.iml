@@ -3,7 +3,9 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/chap2/mandelbrot/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/chap2/web/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/chap2/mandelbrot/target" />
+      <excludeFolder url="file://$MODULE_DIR$/chap2/web/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
