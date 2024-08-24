@@ -15,7 +15,7 @@ fn print_usage() {
 
 use std::env;
 
-fn parse_args() -> Result<Arguments, &'static str> {
+fn parse_args() -> Arguments{
     let args: Vec<String> = env::args().collect();
 
     if args.len() != 5 {
@@ -24,17 +24,35 @@ fn parse_args() -> Result<Arguments, &'static str> {
         std::process::exit(1);
     }
 
-    Ok(Arguments {
+    Arguments {
         target: args[1].clone(),
         replacement: args[2].clone(),
         filename: args[3].clone(),
         output: args[4].clone(),
-    })
+    }
 }
+use std::fs;
 
 fn main() {
     let args = parse_args();
-    println!("{:?}", args)
+
+    let data = match fs::read_to_string(&args.filename) {
+        Ok(v) => v,
+        Err(e) => {
+            eprintln!("{}: {}", "Error".red().bold(), e);
+            std::process::exit(1);
+        }
+    };
+
+    match fs::write(&args.output, &data) {
+        Ok(_) => {},
+        Err(e) => {
+            eprintln!("{} failed to write to file '{}': {:?}",
+                      "Error".red().bold(), args.filename, e);
+            std::process::exit(1);
+        }
+    }
 }
+
 
 
