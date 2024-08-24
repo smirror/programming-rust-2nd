@@ -31,15 +31,15 @@ struct GcdParameters {
 }
 
 async fn post_gcd(form: web::Form<GcdParameters>) -> HttpResponse {
-    if form.n == 0 || form.m ==0 {
+    if form.n == 0 || form.m == 0 {
         return HttpResponse::BadRequest()
             .content_type("text/html")
             .body("Computing the GCD with zero is boring.");
     }
 
     let response =
-    format!("The greateset common divisor of the numbers {} and {} is <b>{}</b>\n",
-    form.m, form.n, gcd(form.m, form.n));
+        format!("The greateset common divisor of the numbers {} and {} is <b>{}</b>\n",
+                form.m, form.n, gcd(form.m, form.n));
 
     HttpResponse::Ok()
         .content_type("text/html")
